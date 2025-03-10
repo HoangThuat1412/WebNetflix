@@ -5,8 +5,11 @@ import com.example.WebNetflix.model.UserExample;
 import com.example.WebNetflix.model.UserKey;
 import com.example.WebNetflix.model.UserWithBLOBs;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface UserMapper {
 
 	/**
