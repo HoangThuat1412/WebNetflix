@@ -1,6 +1,8 @@
 package com.example.WebNetflix.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,16 @@ public class HomePageController {
 //		 for(User value : listUser) {
 //			 System.out.println("Kiem tra: "+ value.getFullName());
 //		 }
+		 
+		 Map<String, Object> param = new HashMap<String, Object>();
+		 param.put("userName", "Thuat");
+		 param.put("id", 1);
+		 
+		 List<Map<String, Object>> listUser =  userMapper.getAllUsers(param);
+		 for(Map<String,  Object> value : listUser) {
+			 System.out.println("Kiem tra: " + value.get("full_name"));
+		 }
+		 
 		 return modelAndView;
 	}
 }
