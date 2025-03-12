@@ -16,14 +16,14 @@ import com.example.WebNetflix.model.UserExample;
 
 @Controller
 public class HomePageController {
-	
+
 	@Autowired
 	UserMapper userMapper;
-	
-	@GetMapping("/")
+
+	@GetMapping("/login")
 	public ModelAndView index() {
-		 ModelAndView modelAndView = new ModelAndView("index");
-		 
+		ModelAndView modelAndView = new ModelAndView("index");
+
 //		 UserExample example = new UserExample();
 //		 example.createCriteria().andIdEqualTo((long)1).andUserNameEqualTo("Thuat");
 //		 
@@ -32,17 +32,22 @@ public class HomePageController {
 //		 for(User value : listUser) {
 //			 System.out.println("Kiem tra: "+ value.getFullName());
 //		 }
-		 
-		 Map<String, Object> param = new HashMap<String, Object>();
-		 param.put("userName", "Thuat");
-		 param.put("id", 1);
-		 
-		 List<Map<String, Object>> listUser =  userMapper.getAllUsers(param);
-		 for(Map<String,  Object> value : listUser) {
-			 System.out.println("Kiem tra: " + value.get("full_name"));
-		 }
-		 
-		 return modelAndView;
+
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("userName", "Thuat");
+		param.put("id", 1);
+
+		List<Map<String, Object>> listUser = userMapper.getAllUsers(param);
+		for (Map<String, Object> value : listUser) {
+			System.out.println("Kiem tra: " + value.get("full_name"));
+		}
+		return modelAndView;
+	}
+
+	@GetMapping("/home")
+	public ModelAndView home() {
+		ModelAndView modelAndView = new ModelAndView("home");
+
+		return modelAndView;
 	}
 }
-    
