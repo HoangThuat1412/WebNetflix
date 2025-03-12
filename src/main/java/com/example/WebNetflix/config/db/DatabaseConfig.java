@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
+import com.example.WebNetflix.config.AES;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -27,16 +28,24 @@ public class DatabaseConfig {
 
 	@Value("${db.datasource.password}")
 	private String password;
+	
+	private String secretKey = "Aa@123456";
+	
 
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
-		HikariConfig hikariCongfig = new HikariConfig();
-		hikariCongfig.setJdbcUrl(urlDB);
-		hikariCongfig.setDriverClassName(driverClassName);
-		hikariCongfig.setUsername(userName);
-		hikariCongfig.setPassword(password);
-
-		HikariDataSource hikariDataSource = new HikariDataSource(hikariCongfig);
+		HikariConfig hikariConfig = new HikariConfig();
+//		hikariConfig.setJdbcUrl(AES.decrypt(urlDB, secretKey));
+//		hikariConfig.setDriverClassName(AES.decrypt(driverClassName, secretKey));
+//		hikariConfig.setUsername(AES.decrypt(userName, secretKey));
+//		hikariConfig.setPassword(AES.decrypt(password, secretKey));
+		
+		hikariConfig.setJdbcUrl(urlDB);
+		hikariConfig.setDriverClassName(driverClassName);
+		hikariConfig.setUsername(userName);
+		hikariConfig.setPassword(password);
+		
+		HikariDataSource hikariDataSource = new HikariDataSource(hikariConfig);
 
 		return hikariDataSource;
 	}
