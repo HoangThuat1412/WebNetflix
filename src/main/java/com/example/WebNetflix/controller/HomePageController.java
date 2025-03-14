@@ -50,4 +50,11 @@ public class HomePageController {
 
 		return modelAndView;
 	}
+		
+		@GetMapping("/home/detail")
+		public ModelAndView homeDetail() {
+			ModelAndView modelAndView = new ModelAndView("homedetail");
+
+			return modelAndView;
+	}
 }

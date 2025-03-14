@@ -28,7 +28,7 @@ public class CustomUserDetailService implements UserDetailsService {
 		example.createCriteria().andEmailEqualTo(username);
 
 		List<User> lisUsers = userMapper.selectByExample(example);
-
+ 
 		if (lisUsers.size() > 0) {
 			User user = lisUsers.get(0);
 
